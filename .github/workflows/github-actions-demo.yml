@@ -21,4 +21,4 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: get directory
         run: |
-          du -h
+          df -h
