@@ -7,10 +7,10 @@ jobs:
     steps:
       - name: print env message
         run: |
-          echo event -> {github.event_name}
-          echo runner.os ->  {runner.os}
-          echo github  -->   {github}
-          echo github.action  -->   {github.action}
+          echo event -> ${github.event_name}
+          echo runner.os ->  ${runner.os}
+          echo github  -->   ${github}
+          echo github.action  -->   ${github.action}
           echo github.action_path  -->   {github.action_path}
           echo github.action_ref  -->   {github.action_ref}
           echo github.action_repository  -->   {github.action_repository}
