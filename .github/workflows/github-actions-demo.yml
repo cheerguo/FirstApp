@@ -51,12 +51,12 @@ jobs:
 
       - name: Check out repository code
         uses: actions/checkout@v4
-        run: echo "github.repository --> 💡 ${{ github.repository }}"
-
+  
       - name: List files in the repository
         run: |
           echo "github.workspace -->  ${{ github.workspace }}." 
         run: echo "job.status --> ${{ job.status }}."
+
       - name: get directory
         run: |
           df -h
