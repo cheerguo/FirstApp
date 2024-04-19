@@ -55,8 +55,8 @@ jobs:
   
       - name: List files in the repository
         run: |
-          echo "github.workspace -->  {github.workspace }}." 
-        run: echo "job.status --> {job.status }}."
+          echo github.workspace -->  {github.workspace} 
+          echo job.status --> {job.status}
 
       - name: get directory
         run: |
