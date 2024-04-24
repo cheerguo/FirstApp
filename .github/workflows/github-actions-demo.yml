@@ -16,5 +16,6 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
         run: |
           echo "EVENT_NAME $EVENT_NAME"
+          python ./script/cmd.py
 
 
