@@ -17,10 +17,10 @@ jobs:
 
       - name: Dump GitHub context
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
           echo "EVENT_NAME $EVENT_NAME"
           python ./script/cmd.py
+          python ./script/cmd2.py
 
 
