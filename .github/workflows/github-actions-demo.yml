@@ -15,12 +15,18 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Dump GitHub context
+      - name: print_inro
         env:
           EVENT_NAME: ${{ github.event_name }}
+          SECRET_PWD: ${{ secrets.CATH_PWD }}
         run: |
-          echo "EVENT_NAME $EVENT_NAME"
+          echo "I will print sceret"
           python ./script/cmd.py
           python ./script/cmd2.py
 
+
+      - name: print_dir
+        run: |
+          ls -al .github
+          ls -al script
 
