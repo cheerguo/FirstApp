@@ -2,13 +2,18 @@ name: Print action info
 run-name: ${{ github.actor }}  is testing out GitHub Actions
 #on: [branch_protection_rule,check_run,check_suite,create,delete,deployment,deployment_status,discussion,discussion_comment,fork,gollum,issue_comment,issues,label,merge_group,milestone,page_build,project,project_card,project_column,public,pull_request,issue_comment,pull_request_review,pull_request_review_comment,pull_request_target,push,registry_package,release,repository_dispatch,schedule,status,watch,workflow_call,workflow_dispatch]
 on: 
-  pull_request_target:
+  pull_request:
     branches:
       - 'main'
     types: [assigned,unassigned,labeled,unlabeled,opened,edited,closed,reopened,synchronize,converted_to_draft,locked,unlocked,enqueued,dequeued,milestoned,demilestoned,ready_for_review,review_requested,review_request_removed,auto_merge_enabled,auto_merge_disabled]
 jobs:
   dump_contexts_to_log:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,7 +25,7 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           SECRET_PWD: ${{ secrets.CATH_PWD }}
         run: |
-          echo "I will print sceret"
+          echo "I will print sceret -> $EVENT_NAME"
           python ./script/cmd.py
           python ./script/cmd2.py
 
@@ -30,9 +35,5 @@ jobs:
           ls -al .github
           ls -al script
 
-      - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            Hello world !
+
 
