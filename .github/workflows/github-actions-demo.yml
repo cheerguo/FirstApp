@@ -2,7 +2,7 @@ name: Print action info
 run-name: ${{ github.actor }}  is testing out GitHub Actions
 #on: [branch_protection_rule,check_run,check_suite,create,delete,deployment,deployment_status,discussion,discussion_comment,fork,gollum,issue_comment,issues,label,merge_group,milestone,page_build,project,project_card,project_column,public,pull_request,issue_comment,pull_request_review,pull_request_review_comment,pull_request_target,push,registry_package,release,repository_dispatch,schedule,status,watch,workflow_call,workflow_dispatch]
 on: 
-  pull_request:
+  pull_request_target:
     branches:
       - 'main'
     types: [assigned,unassigned,labeled,unlabeled,opened,edited,closed,reopened,synchronize,converted_to_draft,locked,unlocked,enqueued,dequeued,milestoned,demilestoned,ready_for_review,review_requested,review_request_removed,auto_merge_enabled,auto_merge_disabled]
@@ -20,7 +20,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: print_inro
+      - name: print_info
         env:
           EVENT_NAME: ${{ github.event_name }}
           SECRET_PWD: ${{ secrets.CATH_PWD }}
@@ -28,12 +28,15 @@ jobs:
           echo "I will print sceret -> $EVENT_NAME"
           python ./script/cmd.py
           python ./script/cmd2.py
+          echo "manifest_rev=123" >> $GITHUB_ENV
+          echo "in print_info manifest_rev -> ${manifest_rev}"
 
 
       - name: print_dir
         run: |
           ls -al .github
           ls -al script
+          echo "in print_dir manifest_rev -> ${manifest_rev}"
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
