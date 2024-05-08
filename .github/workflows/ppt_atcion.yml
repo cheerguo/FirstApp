@@ -1,5 +1,5 @@
 name: ppt-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} is learning ppt Actions
 on: [push]
 jobs:
   print-ubuntu:
