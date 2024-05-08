@@ -18,3 +18,11 @@ jobs:
         shell: pwsh
         run: |
           date
+  sum-up:
+    runs-on: ubuntu-latest
+    needs: print-ubuntu
+    steps:
+      - name: To sumup
+        shell: bash
+        run: |
+          echo "every thing is done"
