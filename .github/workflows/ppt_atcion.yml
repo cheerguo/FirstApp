@@ -15,6 +15,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Get list of rules
-          shell: pwsh
-          run: |
-            date
+        shell: pwsh
+        run: |
+          date
